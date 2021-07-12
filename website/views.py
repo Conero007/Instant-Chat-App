@@ -14,14 +14,20 @@ def home():
 
 @socketio.on('connect')
 def connected():
-    message = f'{current_user.name} has joined!'
-    send(message, broadcast=True)
+    try:
+        message = f'{current_user.name} has joined!'
+        send(message, broadcast=True)
+    except:
+        pass
 
 
 @socketio.on('disconnect')
 def disconnected():
-    message = f'{current_user.name} has left!'
-    send(message, broadcast=True)
+    try:
+        message = f'{current_user.name} has left!'
+        send(message, broadcast=True)
+    except:
+        pass
 
 
 @socketio.on('message')
