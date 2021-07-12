@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Login</title>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div id="display-messages"></div>
+
+    <div id="input-message">
+        <input type="text" name="user_message" id="user_message" placeholder="Type Here..." autocomplete="off">
+        <button type="button" id="send_message">Send</button>
+    </div>
+</div>
+{% endblock %}
