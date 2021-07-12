@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   var socket = io();
-
+  
   socket.on('message', data => {
     $('#display-messages').append('<ol>' + data + '</ol>')
   });
