@@ -64,7 +64,7 @@ def signup():
         user = User.query.filter_by(email=email).first()
         if check_info(user, email, name, password1, password2):
             new_user = User(email=email, name=name, password=generate_password_hash(
-                password=password1, method="sha256"))
+                password=password1, method="sha256"), online=True)
             db.session.add(new_user)
             db.session.commit()
 
