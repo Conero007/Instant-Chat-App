@@ -1,9 +1,9 @@
 import time
 from . import socketio, db
 from .models import Chat, User
-from flask_socketio import send, emit
+from flask_socketio import emit
+from flask import Blueprint, render_template
 from flask_login import login_required, current_user
-from flask import Blueprint, render_template, request, redirect
 
 views = Blueprint("views", __name__)
 
@@ -14,15 +14,11 @@ def home():
     return render_template("home.html", user=current_user, messages=Chat, all_user=User)
 
 
-@socketio.on('exit_chat')
-def exit_chat():
+@socketio.on('disconnect')
+def disconnected():
     current_user.online = False
     db.session.commit()
-
-    time.sleep(60000)
-    if current_user.online == False:
-        emit('refresh_page')
-        print(f'\n\n{current_user.name} has left!\n\n')
+    emit('refresh_page')
 
 
 @socketio.on('store_message')
