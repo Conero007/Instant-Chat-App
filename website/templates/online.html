@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+
+
+{% block online %}
+<div class='online-users'>
+    <br><br>
+    <h3>Online users</h3>
+    <ul class="list-group list-group-flush">
+        {% for online_user in all_user.query.filter_by(online=True).all() %}
+        <li class="list-group-item">
+            {{ online_user.name }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -6,11 +6,24 @@
 
 {% block content %}
 <div>
-    <div id="display-messages"></div>
+    <ul class="list-group list-group-flush">
+        <div id="display-messages">
+            {% for message in messages.query.all() %}
+            <li class="list-group-item">
+                {{ message.data }}
+            </li>
+            {% endfor %}
+        </div>
+    </ul>
 
+    <br><br>
     <div id="input-message">
         <input type="text" name="user_message" id="user_message" placeholder="Type Here..." autocomplete="off">
         <button type="button" id="send_message">Send</button>
     </div>
 </div>
+
+{% block online %}
+{% endblock %}
+
 {% endblock %}
